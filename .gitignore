@@ -18,6 +18,6 @@
 */AddressBook/AddressBook/Debug/
 
 # Files
-*/AddressBook/AddressBook.sdf
-*/AddressBook/AddressBook.opensdf
-*/AddressBook/AddressBook/AddressBook.vcxproj.user
+*.sdf
+*.opensdf
+*.user
