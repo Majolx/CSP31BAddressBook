@@ -208,7 +208,7 @@ int AddressBookType::search(string lastName)
 
 	if (!(currentNode = firstNode()))
 	{
-		return;
+		return -1;
 	}
 
 	while (currentNode != NULL)
