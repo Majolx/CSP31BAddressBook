@@ -14,10 +14,10 @@
 
 # Directories
 */AddressBook/Debug/
-*/AddressBook/ipch/
 */AddressBook/AddressBook/Debug/
 
 # Files
 *.user
 *.sdf
 *.opensdf
+*.ipch
