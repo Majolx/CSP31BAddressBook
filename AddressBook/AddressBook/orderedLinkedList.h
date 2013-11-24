@@ -91,7 +91,7 @@ void orderedLinkedList<Type>::insert(const Type& newItem)
         found = false;
 
         while (current != NULL && !found) //search the list
-           if (current->info >= newItem)
+           if (current->info == newItem)
                found = true;
            else
            {
@@ -145,7 +145,7 @@ void orderedLinkedList<Type>::deleteNode(const Type& deleteItem)
         found = false;
 
         while (current != NULL && !found)  //search the list
-            if (current->info >= deleteItem)
+            if (current->info == deleteItem)
                 found = true;
             else
             {

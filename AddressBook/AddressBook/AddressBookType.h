@@ -225,7 +225,28 @@ int AddressBookType::search(string lastName)
 // Save Data
 void AddressBookType::saveData(ofstream& outFile)
 {
-	for (int i = 0; i < this->length; i++)
+	nodeType<ExtPersonType> *currentNode;
+	currentNode = firstNode();
+
+	while (currentNode != NULL)
+	{
+		DateType d = currentNode->info.getDate();
+		AddressType a = currentNode->info.getAddress();
+		string aMembers[4];
+		a.getAddress(aMembers[0], aMembers[1], aMembers[2], aMembers[3]);
+
+		outFile << currentNode->info.getFirstName() << " " << currentNode->info.getLastName() << endl;
+		outFile << d.getMonth() << " " << d.getDay() << " " << d.getYear() << endl;
+		outFile << aMembers[0] << endl;
+		outFile << aMembers[1] << endl;
+		outFile << aMembers[2] << endl;
+		outFile << aMembers[3] << endl;
+		outFile << currentNode->info.getPhoneNumber() << endl;
+		outFile << currentNode->info.getStatus();
+
+		currentNode = currentNode->link;
+	}
+	/*for (int i = 0; i < this->length; i++)
 	{
 		DateType d = list[i].getDate();
 		AddressType a = list[i].getAddress();
@@ -242,7 +263,7 @@ void AddressBookType::saveData(ofstream& outFile)
 		outFile << list[i].getStatus();
 		if (i + 1 != this->length)
 			outFile << endl;
-	}
+	}*/
 }
 
 int AddressBookType::listSize()
