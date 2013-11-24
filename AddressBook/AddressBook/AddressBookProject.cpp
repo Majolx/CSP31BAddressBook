@@ -361,7 +361,10 @@ void optionSeven()
 		cin >> status;
 		cout << endl;
 
-		//call something to insert the info to linkList
+		//assign the values to newPerson
+		ExtPersonType newPerson(firstName, lastName, month, day, year, streetAddress, city, state, zipcode, phoneNumber, status);
+		//insert it to linklist
+		addressBook.insert(newPerson);
 	}
 
 	else
@@ -371,7 +374,8 @@ void optionSeven()
 		cout << endl << "Enter the person's first name to be deleted: ";
 		cin >> firstName;
 
-		//call something to delete the matching info in the list
+		//call function to delete the matching info in the list
+		addressBook.deletePerson(firstName, lastName);
 	}
 }
 

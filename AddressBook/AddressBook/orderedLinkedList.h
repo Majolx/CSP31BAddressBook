@@ -56,7 +56,7 @@ bool orderedLinkedList<Type>::search(const Type& searchItem) const
     current = first;  //start the search at the first node
 
     while (current != NULL && !found)
-        if (current->info == searchItem)
+		if (current->info == searchItem)
             found = true;
         else
             current = current->link;

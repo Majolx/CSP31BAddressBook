@@ -26,7 +26,8 @@ public:
     void saveData(ofstream&);
 	bool lexicalCompare(string, string);
 	int listSize();
-
+	void AddressBookType::deletePerson(const string firstName, const string lastName);
+	
 	nodeType<ExtPersonType>* firstNode();
 
     AddressBookType();
@@ -269,4 +270,22 @@ void AddressBookType::saveData(ofstream& outFile)
 int AddressBookType::listSize()
 {
 	return this->listSize();
+}
+
+//==========================================================================================//
+//DeletingPerson
+void AddressBookType::deletePerson(const string firstName, const string lastName)
+{
+	ExtPersonType personInList;
+	nodeType<ExtPersonType> *currentNode;
+	currentNode = firstNode();
+
+	while (currentNode != NULL)
+	{
+		if (currentNode->info.getFirstName() == firstName && currentNode->info.getLastName() == lastName)
+		{
+			personInList = currentNode->info;
+			this->deleteNode(personInList);
+		}
+	}
 }
