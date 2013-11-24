@@ -74,6 +74,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AddressBookProject.cpp" />
+    <ClCompile Include="AddressType.cpp" />
+    <ClCompile Include="DateType.cpp" />
+    <ClCompile Include="ExtPersonType.cpp" />
+    <ClCompile Include="PersonType.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AddressBookType.h" />
+    <ClInclude Include="AddressType.h" />
+    <ClInclude Include="DateType.h" />
+    <ClInclude Include="ExtPersonType.h" />
+    <ClInclude Include="linkedListType.h" />
+    <ClInclude Include="orderedLinkedList.h" />
+    <ClInclude Include="PersonType.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
