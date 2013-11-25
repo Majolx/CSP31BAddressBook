@@ -90,6 +90,7 @@ int main()
 
 	while (userSelection != 9)
 	{
+		cout << "++=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=++" << endl;
 		cout << "Welcome to the address book program." << endl << endl;
 		cout << "Choose among the following options." << endl << endl;
 
@@ -195,11 +196,11 @@ void optionOne()
 			int loc = addressBook.search(lastName);
 			if (loc != -1)
 			{
-				cout << lastName << " found at location " << loc + 1 << endl;
+				cout << lastName << " found at location " << loc + 1 << endl << endl;
 			}
 			else
 			{
-				cout << "Entry not found." << endl;
+				cout << "Entry not found." << endl << endl;
 			}
 			return;
 		}
@@ -314,7 +315,6 @@ void optionFive()
 
 void optionSix()
 {
-	cout << addressBook.listSize() << endl;
 	addressBook.print();
 	return;
 }
@@ -322,13 +322,13 @@ void optionSix()
 void optionSeven()
 {
 	int answer = 0, month = 0, day = 0, year = 0;
-	string lastName = "", firstName = "", streetAddress = "", city = "", 
+	string lastName = "", firstName = "", streetAddress = " ", city = "", 
 		   state = "", zipcode = "", phoneNumber = "", status = "";
 	
 	cout << "Enter 1 to add or 2 to delete: ";
 	cin >> answer;
 	
-	while(answer != 1 || answer != 2)
+	while(answer != 1 && answer != 2)
 	{
 		cout << "Invalid choice! Enter 1 or 2 only" << endl;
 		cout << "Enter 1 to add or 2 to delete: ";
@@ -338,9 +338,10 @@ void optionSeven()
 	if (answer == 1)
 	{
 		cout << "Enter first name: ";
-		cin >> firstName;
+		resetInput();
+		getline(cin, firstName);
 		cout << endl << "Enter last name: ";
-		cin >> lastName;
+		getline(cin, lastName);
 		cout << endl << "Enter birth month: ";
 		cin >> month;
 		cout << endl << "Enter birth day: ";
@@ -348,16 +349,17 @@ void optionSeven()
 		cout << endl << "Enter birth year: ";
 		cin >> year;
 		cout << endl << "Enter street address: ";
-		cin >> streetAddress;
+		resetInput();
+		getline(cin, streetAddress);
 		cout << endl << "Enter city: ";
-		cin >> city;
+		getline(cin, city);		
 		cout << endl << "Enter state: ";
-		cin >> state;
+		getline(cin, state);
 		cout << endl << "Enter zip code: ";
 		cin >> zipcode;
 		cout << endl << "Enter phone number: ";
 		cin >> phoneNumber;
-		cout << endl << "Enter personal status (Family, Friend, or Business: ";
+		cout << endl << "Enter personal status (Family, Friend, or Business): ";
 		cin >> status;
 		cout << endl;
 
@@ -384,6 +386,7 @@ void optionEight()
 	ofstream outFile;
 	outFile.open("output.txt");
 	addressBook.saveData(outFile);
+	outFile.close();
 }
 
 void resetInput()

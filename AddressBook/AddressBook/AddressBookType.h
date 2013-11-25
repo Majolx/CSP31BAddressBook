@@ -25,7 +25,6 @@ public:
     void printNamesBetweenLastNames(string, string);
     void saveData(ofstream&);
 	bool lexicalCompare(string, string);
-	int listSize();
 	void AddressBookType::deletePerson(const string firstName, const string lastName);
 	
 	nodeType<ExtPersonType>* firstNode();
@@ -116,6 +115,7 @@ void AddressBookType::printNamesWithStatus(string status)
 	{
 		if (currentNode->info.getStatus() == status)
 			currentNode->info.print();
+		currentNode = currentNode->link;
 	}
 }
 
@@ -175,6 +175,7 @@ void AddressBookType::printNamesBetweenLastNames(string s1, string s2)
 		string lastName = currentNode->info.getLastName();
 		if (lexicalCompare(lastName, s1) && lexicalCompare(s2, lastName))
 			currentNode->info.print();
+		currentNode = currentNode->link;
 	}
 }
 
@@ -216,6 +217,7 @@ int AddressBookType::search(string lastName)
 	{
 		if (currentNode->info.getLastName() == lastName)
 			return index;
+		currentNode = currentNode->link;
 		index++;
 	}
 
@@ -229,6 +231,7 @@ void AddressBookType::saveData(ofstream& outFile)
 	nodeType<ExtPersonType> *currentNode;
 	currentNode = firstNode();
 
+	int entryCount = 0;
 	while (currentNode != NULL)
 	{
 		DateType d = currentNode->info.getDate();
@@ -244,32 +247,11 @@ void AddressBookType::saveData(ofstream& outFile)
 		outFile << aMembers[3] << endl;
 		outFile << currentNode->info.getPhoneNumber() << endl;
 		outFile << currentNode->info.getStatus();
+		if (entryCount++ + 1 != this->count)
+			outFile << endl;
 
 		currentNode = currentNode->link;
 	}
-	/*for (int i = 0; i < this->length; i++)
-	{
-		DateType d = list[i].getDate();
-		AddressType a = list[i].getAddress();
-		string aMembers[4];
-		a.getAddress(aMembers[0], aMembers[1], aMembers[2], aMembers[3]);
-
-		outFile << list[i].getFirstName() << " " << list[i].getLastName() << endl;
-		outFile << d.getMonth() << " " << d.getDay() << " " << d.getYear() << endl;
-		outFile << aMembers[0] << endl;
-		outFile << aMembers[1] << endl;
-		outFile << aMembers[2] << endl;
-		outFile << aMembers[3] << endl;
-		outFile << list[i].getPhoneNumber() << endl;
-		outFile << list[i].getStatus();
-		if (i + 1 != this->length)
-			outFile << endl;
-	}*/
-}
-
-int AddressBookType::listSize()
-{
-	return this->listSize();
 }
 
 //==========================================================================================//
@@ -286,6 +268,11 @@ void AddressBookType::deletePerson(const string firstName, const string lastName
 		{
 			personInList = currentNode->info;
 			this->deleteNode(personInList);
+			cout << firstName << " " << lastName << " has been deleted. " << endl << endl;
+			return;
 		}
+		currentNode = currentNode->link;
 	}
+
+	cout << firstName << " " << lastName << " was not found. " << endl << endl;
 }

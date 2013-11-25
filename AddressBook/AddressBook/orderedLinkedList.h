@@ -44,6 +44,7 @@ public:
       //               If deleteItem is not in the list, an
       //               appropriate message is printed.
 
+	bool searchNames(const Type& searchItem) const;
 };
 
 
@@ -56,7 +57,7 @@ bool orderedLinkedList<Type>::search(const Type& searchItem) const
     current = first;  //start the search at the first node
 
     while (current != NULL && !found)
-		if (current->info == searchItem)
+		if (searchItem == current->info)
             found = true;
         else
             current = current->link;
@@ -64,6 +65,23 @@ bool orderedLinkedList<Type>::search(const Type& searchItem) const
     return found;
 }//end search
 
+
+template <class Type>
+bool orderedLinkedList<Type>::searchNames(const Type& searchItem) const
+{
+	bool found = false;
+	nodeType<Type> *current;
+
+	current = first;
+
+	while (current != NULL && !found)
+		if (searchItem.getFirstName() == current->info.getFirstName())
+			found = true;
+		else
+			current = current->link;
+
+	return found;
+}
 
 template <class Type>
 void orderedLinkedList<Type>::insert(const Type& newItem)
@@ -85,13 +103,13 @@ void orderedLinkedList<Type>::insert(const Type& newItem)
         last = newNode;
         count++;
     }
-	else if (!search(newItem))
+	else if (searchNames(newItem) == false)
     {	// Insert the item
         current = first;
         found = false;
 
         while (current != NULL && !found) //search the list
-           if (current->info == newItem)
+           if (newItem == current->info)
                found = true;
            else
            {
@@ -115,7 +133,11 @@ void orderedLinkedList<Type>::insert(const Type& newItem)
 
             count++;
         }
-    }//end else
+    }
+	else 
+	{
+		cout << "Entry already exists!" << endl << endl;
+	}//end else
 }//end insert
 
 template<class Type>
@@ -145,7 +167,7 @@ void orderedLinkedList<Type>::deleteNode(const Type& deleteItem)
         found = false;
 
         while (current != NULL && !found)  //search the list
-            if (current->info == deleteItem)
+            if (deleteItem == current->info)
                 found = true;
             else
             {
@@ -157,7 +179,7 @@ void orderedLinkedList<Type>::deleteNode(const Type& deleteItem)
             cout << "The item to be deleted is not in the " 
                  << "list." << endl;
         else
-            if (current->info == deleteItem) //the item to be 
+            if (deleteItem == current->info) //the item to be 
                                    //deleted is in the list
             {
                 if (first == current)       //Case 2
