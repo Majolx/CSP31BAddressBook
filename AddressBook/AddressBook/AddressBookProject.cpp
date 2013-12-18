@@ -48,13 +48,6 @@ int main()
 			for (int i = 0; i < ENTRY_SIZE; i++)
 			{
 				getline(inFile, line[i]);
-				/*
-				if (!getline(inFile, line[i]))
-				{
-					cout << "Error: Incorrect Entry Format (" << i << ")" << endl;
-					system("PAUSE");
-					return 2;
-				}*/
 			}
 
 			istringstream iss(line[0]);

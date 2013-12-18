@@ -35,11 +35,6 @@ using namespace std;
 	zipCode = "";
 }
 	AddressType::AddressType(string &streetAddress, string &city, string &state, string &zipCode){
-	/*AddressType::AddressType(string strAddr, string c, string st, string z){
-	streetAddress = strAddr;
-	city = c;
-	state = st;
-	zipCode = z;}*/
 	this->streetAddress = streetAddress;
 	this->city = city;
 	this->state = state;

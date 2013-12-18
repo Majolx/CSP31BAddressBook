@@ -8,9 +8,7 @@ using namespace std;
 
 void ExtPersonType::printAddress() const
 {
-	PersonType p;
-
-	p.print();
+	this->print();
 	address.print();
 }
 
@@ -36,9 +34,8 @@ void ExtPersonType::setInfo(string firstName, string lastName, AddressType addre
 {
 	string st, city, state, zip;
 	int m, d, y;
-	PersonType name;
-
-	name.setName(firstName, lastName);
+	
+	this->setName(firstName, lastName);
 	addressType.getAddress(st, city, state, zip);
 	address.setAddress(st, city, state, zip);
 	dateType.getDate(m, d, y);
